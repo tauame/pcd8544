@@ -169,6 +169,11 @@ def load_bitmap(filename, reverse=False):
 
 
 def show_image(im):
+    # Load image file if argument is a String
+    if isinstance(im, basestring):
+        im = Image.open(im)
+        im = Image.eval(im, lambda(x):255-x)
+    
     # Rotate and mirror the image
     rim = im.rotate(-90).transpose(Image.FLIP_LEFT_RIGHT)
 
